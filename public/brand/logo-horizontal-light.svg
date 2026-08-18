@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="100" viewBox="0 0 360 100">
+  <defs>
+    <linearGradient id="markoraGoldLight" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f0d9a8"/>
+      <stop offset="45%" stop-color="#d4af6a"/>
+      <stop offset="100%" stop-color="#b98a4b"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0,18)">
+    <rect x="13" y="16" width="10" height="34" rx="3" fill="url(#markoraGoldLight)"/>
+    <rect x="27" y="30" width="10" height="20" rx="3" fill="url(#markoraGoldLight)"/>
+    <rect x="41" y="10" width="10" height="40" rx="3" fill="url(#markoraGoldLight)"/>
+  </g>
+  <text x="84" y="63" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700" fill="#111318">Markora</text>
+  <text x="86" y="84" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="600" letter-spacing="3.5" fill="#8a8f9e">LLC</text>
+</svg>
