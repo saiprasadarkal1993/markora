@@ -2,6 +2,7 @@ import saiprasadPhoto from '../assets/team/saiprasad-arkal.webp'
 import yifanPhoto from '../assets/team/yifan-wu.jpg'
 import enginPhoto from '../assets/team/engin-dogusoy.avif'
 import annPhoto from '../assets/team/ann-lee.jpg'
+import ezgiPhoto from '../assets/team/ezgi-sultan.avif'
 
 const TEAM = [
   { name: 'Saiprasad Arkal', role: 'Chief Strategy Officer', dept: 'Leadership', photo: saiprasadPhoto, photoPosition: '65% 50%' },
@@ -11,7 +12,7 @@ const TEAM = [
   { name: 'Seongmin Park', role: 'SEO & Content Lead', dept: 'Organic' },
   { name: 'Saiprasad Arkal', role: 'Marketing Analytics Lead', dept: 'Data', photo: saiprasadPhoto, photoPosition: '65% 50%' },
   { name: 'Jessica Alvarez', role: 'Brand Partnerships Manager', dept: 'Partnerships' },
-  { name: 'Ezgi Sultan', role: 'Client Success Director', dept: 'Success' },
+  { name: 'Ezgi Sultan', role: 'Client Success Director', dept: 'Success', photo: ezgiPhoto, photoPosition: '50% 25%' },
   { name: 'Aditi Alaganan', role: 'Lifecycle & CRM Strategist', dept: 'Retention' },
 ]
 
