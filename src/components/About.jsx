@@ -1,10 +1,11 @@
 import saiprasadPhoto from '../assets/team/saiprasad-arkal.webp'
 import yifanPhoto from '../assets/team/yifan-wu.jpg'
+import enginPhoto from '../assets/team/engin-dogusoy.avif'
 
 const TEAM = [
   { name: 'Saiprasad Arkal', role: 'Chief Strategy Officer', dept: 'Leadership', photo: saiprasadPhoto, photoPosition: '65% 50%' },
   { name: 'Yifan Wu', role: 'Head of Growth Marketing', dept: 'Growth', photo: yifanPhoto, photoPosition: '63% 35%' },
-  { name: 'Engin Dogusoy', role: 'Creative Director', dept: 'Brand' },
+  { name: 'Engin Dogusoy', role: 'Creative Director', dept: 'Brand', photo: enginPhoto, photoPosition: '38% 58%', photoScale: 2.1 },
   { name: 'Ann Lee', role: 'Senior Paid Media Strategist', dept: 'Performance' },
   { name: 'Seongmin Park', role: 'SEO & Content Lead', dept: 'Organic' },
   { name: 'Saiprasad Arkal', role: 'Marketing Analytics Lead', dept: 'Data', photo: saiprasadPhoto, photoPosition: '65% 50%' },
@@ -23,15 +24,20 @@ function initials(name) {
     .toUpperCase()
 }
 
-function Avatar({ name, photo, photoPosition, index }) {
+function Avatar({ name, photo, photoPosition, photoScale, index }) {
   if (photo) {
+    const position = photoPosition || '50% 50%'
     return (
       <div className="mx-auto h-20 w-20 overflow-hidden rounded-2xl shadow-lg">
         <img
           src={photo}
           alt={name}
           className="h-full w-full object-cover"
-          style={{ objectPosition: photoPosition || '50% 50%' }}
+          style={{
+            objectPosition: position,
+            transform: photoScale ? `scale(${photoScale})` : undefined,
+            transformOrigin: position,
+          }}
         />
       </div>
     )
@@ -79,7 +85,13 @@ export default function About() {
               key={`${member.name}-${member.role}`}
               className="card-glow group rounded-2xl border border-white/8 bg-surface p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:border-gold/30"
             >
-              <Avatar name={member.name} photo={member.photo} photoPosition={member.photoPosition} index={i} />
+              <Avatar
+                name={member.name}
+                photo={member.photo}
+                photoPosition={member.photoPosition}
+                photoScale={member.photoScale}
+                index={i}
+              />
               <h3 className="mt-6 text-base font-semibold text-white">{member.name}</h3>
               <p className="mt-1.5 text-sm font-medium text-gold-light">{member.role}</p>
               <span className="mt-4 inline-block rounded-full border border-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-mist">
