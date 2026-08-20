@@ -3,13 +3,14 @@ import yifanPhoto from '../assets/team/yifan-wu.jpg'
 import enginPhoto from '../assets/team/engin-dogusoy.avif'
 import annPhoto from '../assets/team/ann-lee.jpg'
 import ezgiPhoto from '../assets/team/ezgi-sultan.avif'
+import seongminPhoto from '../assets/team/seongmin-park.avif'
 
 const TEAM = [
   { name: 'Saiprasad Arkal', role: 'Chief Strategy Officer', dept: 'Leadership', photo: saiprasadPhoto, photoPosition: '65% 50%' },
   { name: 'Yifan Wu', role: 'Head of Growth Marketing', dept: 'Growth', photo: yifanPhoto, photoPosition: '63% 35%' },
   { name: 'Engin Dogusoy', role: 'Creative Director', dept: 'Brand', photo: enginPhoto, photoPosition: '38% 58%', photoScale: 2.1 },
   { name: 'Ann Lee', role: 'Senior Paid Media Strategist', dept: 'Performance', photo: annPhoto, photoPosition: '50% 30%' },
-  { name: 'Seongmin Park', role: 'SEO & Content Lead', dept: 'Organic' },
+  { name: 'Seongmin Park', role: 'SEO & Content Lead', dept: 'Organic', photo: seongminPhoto, photoPosition: '40% 22%' },
   { name: 'Saiprasad Arkal', role: 'Marketing Analytics Lead', dept: 'Data', photo: saiprasadPhoto, photoPosition: '65% 50%' },
   { name: 'Jessica Alvarez', role: 'Brand Partnerships Manager', dept: 'Partnerships' },
   { name: 'Ezgi Sultan', role: 'Client Success Director', dept: 'Success', photo: ezgiPhoto, photoPosition: '50% 25%' },
