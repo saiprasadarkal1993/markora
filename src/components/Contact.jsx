@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { PHONE_DISPLAY, PHONE_HREF, SUPPORT_EMAIL, ADDRESS_LINES, ADDRESS_MAP } from '../lib/contact'
 
 const initialForm = { name: '', email: '', business: '', message: '' }
 
@@ -71,7 +72,60 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="card-glow mt-14 rounded-3xl border border-white/8 bg-surface p-6 sm:p-10">
+        <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <a
+            href={PHONE_HREF}
+            className="group flex items-center gap-4 rounded-2xl border border-white/8 bg-surface p-5 transition-colors hover:border-gold/40"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span>
+              <span className="block text-xs font-semibold uppercase tracking-[0.15em] text-mist">Call us</span>
+              <span className="mt-1 block text-base font-medium text-white group-hover:text-gold-light">{PHONE_DISPLAY}</span>
+            </span>
+          </a>
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            className="group flex items-center gap-4 rounded-2xl border border-white/8 bg-surface p-5 transition-colors hover:border-gold/40"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.7" />
+                <path d="M3.5 6.5 12 13l8.5-6.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </span>
+            <span className="min-w-0">
+              <span className="block text-xs font-semibold uppercase tracking-[0.15em] text-mist">Email us</span>
+              <span className="mt-1 block truncate text-base font-medium text-white group-hover:text-gold-light">{SUPPORT_EMAIL}</span>
+            </span>
+          </a>
+          <a
+            href={ADDRESS_MAP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-4 rounded-2xl border border-white/8 bg-surface p-5 transition-colors hover:border-gold/40"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" stroke="currentColor" strokeWidth="1.7" strokeLinejoin="round" />
+                <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" strokeWidth="1.7" />
+              </svg>
+            </span>
+            <span className="min-w-0">
+              <span className="block text-xs font-semibold uppercase tracking-[0.15em] text-mist">Visit us</span>
+              <span className="mt-1 block text-sm font-medium leading-snug text-white group-hover:text-gold-light">
+                {ADDRESS_LINES[0]}
+                <br />
+                {ADDRESS_LINES[1]}
+              </span>
+            </span>
+          </a>
+        </div>
+
+        <div className="card-glow mt-6 rounded-3xl border border-white/8 bg-surface p-6 sm:p-10">
           {submitted ? (
             <div className="animate-fade-up flex flex-col items-center py-10 text-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gold-light to-gold shadow-lg shadow-gold/25">

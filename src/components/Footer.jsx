@@ -1,4 +1,6 @@
 import LogoMark from './Logo'
+import { goToSection } from '../lib/nav'
+import { PHONE_DISPLAY, PHONE_HREF, SUPPORT_EMAIL, ADDRESS_LINES } from '../lib/contact'
 
 const LINKS = [
   { label: 'Home', href: '#home' },
@@ -9,10 +11,7 @@ const LINKS = [
 ]
 
 export default function Footer() {
-  const handleClick = (e, href) => {
-    e.preventDefault()
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  const handleClick = goToSection
 
   return (
     <footer className="border-t border-white/8 bg-ink-soft py-12">
@@ -41,10 +40,16 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/8 pt-8 sm:flex-row">
-          <p className="text-xs text-mist/70">
-            © {new Date().getFullYear()} Markora LLC. All rights reserved.
-          </p>
-          <p className="text-xs text-mist/70">Elite marketing strategy &amp; execution.</p>
+          <div className="text-center text-xs text-mist/70 sm:text-left">
+            <p>© {new Date().getFullYear()} Markora LLC. All rights reserved.</p>
+            <p className="mt-1">{ADDRESS_LINES.join(', ')}</p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-mist/70">
+            <a href={PHONE_HREF} className="transition-colors hover:text-white">{PHONE_DISPLAY}</a>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="transition-colors hover:text-white">{SUPPORT_EMAIL}</a>
+            <a href="/terms" className="transition-colors hover:text-white">Terms &amp; Conditions</a>
+            <a href="/privacy" className="transition-colors hover:text-white">Privacy Policy</a>
+          </div>
         </div>
       </div>
     </footer>

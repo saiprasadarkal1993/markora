@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import LogoMark from './Logo'
+import { goToSection } from '../lib/nav'
 
 const LINKS = [
   { label: 'Home', href: '#home' },
@@ -21,9 +22,8 @@ export default function Navbar() {
   }, [])
 
   const handleClick = (e, href) => {
-    e.preventDefault()
     setOpen(false)
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    goToSection(e, href)
   }
 
   return (
