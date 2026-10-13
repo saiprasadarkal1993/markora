@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PHONE_DISPLAY, PHONE_HREF, SUPPORT_EMAIL, ADDRESS_LINES, ADDRESS_MAP } from '../lib/contact'
+import { PHONE_DISPLAY, PHONE_HREF, SUPPORT_EMAIL, ADDRESS_LINES, ADDRESS_MAP, WEB3FORMS_KEY } from '../lib/contact'
 
 const initialForm = { name: '', email: '', business: '', message: '' }
 
@@ -40,17 +40,45 @@ function Field({ label, id, type = 'text', value, onChange, placeholder, textare
 export default function Contact() {
   const [form, setForm] = useState(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    if (e.target.elements.botcheck?.checked) return
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New website inquiry from ${form.name}`,
+          from_name: 'Markora Website',
+          replyto: form.email,
+          name: form.name,
+          email: form.email,
+          business: form.business,
+          message: form.message,
+        }),
+      })
+      const data = await res.json()
+      if (!data.success) throw new Error(data.message || 'Send failed')
+      setSubmitted(true)
+    } catch {
+      setError(`Sorry, something went wrong. Please email us at ${SUPPORT_EMAIL} or call ${PHONE_DISPLAY}.`)
+    } finally {
+      setSending(false)
+    }
   }
 
   const handleReset = () => {
     setForm(initialForm)
     setSubmitted(false)
+    setError('')
   }
 
   return (
@@ -149,6 +177,7 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
+              <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <Field
                   id="name"
@@ -183,12 +212,19 @@ export default function Contact() {
               />
               <button
                 type="submit"
-                className="w-full rounded-full bg-gradient-to-r from-gold-light to-gold px-6 py-4 text-base font-semibold text-ink shadow-lg shadow-gold/20 transition-transform hover:scale-[1.01]"
+                disabled={sending}
+                className="w-full rounded-full bg-gradient-to-r from-gold-light to-gold px-6 py-4 text-base font-semibold text-ink shadow-lg shadow-gold/20 transition-transform hover:scale-[1.01] disabled:cursor-wait disabled:opacity-70 disabled:hover:scale-100"
               >
-                Send Message
+                {sending ? 'Sending…' : 'Send Message'}
               </button>
+              {error && (
+                <p role="alert" className="text-center text-sm text-red-300">
+                  {error}
+                </p>
+              )}
               <p className="text-center text-xs text-mist/70">
-                This form does not transmit data anywhere — it's a frontend demo.
+                By sending this form you agree to our{' '}
+                <a href="/privacy" className="underline underline-offset-2 hover:text-white">Privacy Policy</a>.
               </p>
             </form>
           )}
